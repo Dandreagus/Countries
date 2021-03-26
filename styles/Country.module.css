@@ -1,0 +1,11 @@
+.card {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.p {
+  display: inline;
+}
+.star {
+  width: 40%;
+}

@@ -1,65 +1,69 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import axios from "axios";
+import Head from "next/head";
+import Country from "../components/Country";
+import styles from "../styles/Home.module.css";
+import React, { useState } from "react";
+import Fav from "../components/Fav";
 
-export default function Home() {
+export default function Home({ country }) {
+  const [paises, setpaises] = useState(country);
+  const [input, setinput] = useState("");
+  const [fav, setfav] = useState([]);
+
+  const onSelect = (e) => {
+    if (e === "All") return setpaises(country);
+    setpaises(country.filter((b) => b.region === e));
+  };
+
+  const typing = paises.filter((pais) =>
+    pais.name.toLocaleLowerCase().includes(input)
+  );
+
+  const mostrarPaises = input ? typing : paises;
+
   return (
-    <div className={styles.container}>
+    <div className={styles.main}>
       <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
+        <title>Countries</title>
       </Head>
-
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
+      <div className={styles.menu}>
+        <select onChange={(e) => onSelect(e.target.value)}>
+          <option value="All">All</option>
+          <option value="Europe">Europe</option>
+          <option value="Americas">Americas</option>
+          <option value="Asia">Asia</option>
+          <option value="Polar">Polar</option>
+          <option value="Oceania">Oceania</option>
+        </select>
+        <div>
+          <label>Search</label>
+          <input
+            className={styles.search}
+            value={input}
+            onChange={(e) => setinput(e.target.value.toLocaleLowerCase())}
+          />
         </div>
-      </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
+        <Fav favs={fav} setfav={setfav} />
+      </div>
+      <div className={styles.cards}>
+        {!typing.length && <h1>Not Found</h1>}
+        {mostrarPaises.map((e) => (
+          <Country
+            setfav={setfav}
+            key={e.name}
+            name={e.name}
+            flag={e.flag}
+            fav={fav}
+          />
+        ))}
+      </div>
     </div>
-  )
+  );
+}
+export async function getServerSideProps(context) {
+  const data = await axios.get("http://localhost:3000/api/hello");
+  const country = data.data;
+  return {
+    props: { country },
+  };
 }

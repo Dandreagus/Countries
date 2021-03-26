@@ -1,0 +1,15 @@
+.fav {
+  display: flex;
+  flex-direction: column;
+  margin-top: 4rem;
+  justify-content: center;
+  align-items: center;
+}
+.caja {
+  display: flex;
+  border: 1px solid red;
+  width: 100%;
+}
+.but {
+  margin-left: auto;
+}
