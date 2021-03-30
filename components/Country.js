@@ -28,7 +28,7 @@ export default function Country({ name, flag, fav, setfav }) {
     <div>
       <div className={styles.card}>
         <Card style={{ width: "15rem", height: "20rem" }}>
-          <Card.Img src={flag} style={{ height: "10rem" }} />
+          <Card.Img src={flag} style={{ height: "50%", width: "100%" }} />
           <Card.Body className={styles.card}>
             <Card.Title>{name}</Card.Title>
             <IconContext.Provider value={{ size: "30px" }}>

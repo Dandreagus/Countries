@@ -6,16 +6,22 @@
   display: flex;
   flex-direction: column;
   float: right;
-  margin-top: 4rem;
+  margin-top: 1rem;
   margin-right: 2.5rem;
+  padding: 3rem;
 }
 .search {
-  letter-spacing: normal;
-  word-spacing: normal;
-  text-transform: none;
-  text-indent: 0px;
-  text-shadow: none;
-  border-style: inset;
-  margin: 0em;
-  font: 400 13.3333px Arial;
+  margin-top: 10px;
+  margin-left: 5px;
+  border-radius: 5px;
+  padding: 3px;
+}
+.main {
+  height: 100vh;
+  background-color: cornsilk;
+}
+
+.sec {
+  color: rgba(29, 161, 242, 1);
+  font-weight: 500;
 }

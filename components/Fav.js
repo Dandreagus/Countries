@@ -23,11 +23,13 @@ export default function Fav({ favs, setfav }) {
 
   return (
     <div className={styles.fav}>
-      <h1>Favorites</h1>
+      <h1 className={styles.title}>Favorites</h1>
       {favs.map((x) => (
         <div className={styles.caja}>
           <Link href={`/pais/${x}`}>
-            <a>{x}</a>
+            <a style={{ color: "black", marginLeft: "2px", fontWeight: "500" }}>
+              {x}
+            </a>
           </Link>
           <div className={styles.but}>
             <IconContext.Provider value={{ size: "30px" }}>

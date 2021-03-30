@@ -7,9 +7,20 @@
 }
 .caja {
   display: flex;
-  border: 1px solid red;
+  border: 1px solid rgba(29, 161, 242, 1);
   width: 100%;
+  margin-top: 10px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
 }
 .but {
   margin-left: auto;
+}
+
+.title {
+  font-weight: 600;
+  color: rgba(29, 161, 242, 1);
+  font-style: oblique;
+  font-family: cursive;
 }

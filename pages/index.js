@@ -4,6 +4,8 @@ import Country from "../components/Country";
 import styles from "../styles/Home.module.css";
 import React, { useState } from "react";
 import Fav from "../components/Fav";
+import { FcSearch } from "react-icons/fc";
+import { IconContext } from "react-icons/lib";
 
 export default function Home({ country }) {
   const [paises, setpaises] = useState(country);
@@ -27,7 +29,10 @@ export default function Home({ country }) {
         <title>Countries</title>
       </Head>
       <div className={styles.menu}>
-        <select onChange={(e) => onSelect(e.target.value)}>
+        <select
+          className={styles.sec}
+          onChange={(e) => onSelect(e.target.value)}
+        >
           <option value="All">All</option>
           <option value="Europe">Europe</option>
           <option value="Americas">Americas</option>
@@ -36,7 +41,9 @@ export default function Home({ country }) {
           <option value="Oceania">Oceania</option>
         </select>
         <div>
-          <label>Search</label>
+          <IconContext.Provider value={{ size: "25px" }}>
+            <FcSearch />
+          </IconContext.Provider>
           <input
             className={styles.search}
             value={input}

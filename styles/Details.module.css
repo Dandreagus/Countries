@@ -3,5 +3,7 @@
   align-items: center;
   text-align: center;
   display: flex;
-  margin-top: 10rem;
+  font-weight: 600;
+  height: 100vh;
+  background-image: url("../components/mapa2.jpg");
 }
