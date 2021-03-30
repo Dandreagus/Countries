@@ -25,3 +25,11 @@
   color: rgba(29, 161, 242, 1);
   font-weight: 500;
 }
+.err {
+  font-weight: 600;
+  color: black;
+  font-style: oblique;
+  font-family: cursive;
+  margin: 0 auto;
+  margin-top: 5rem;
+}

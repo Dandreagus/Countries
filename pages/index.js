@@ -53,7 +53,7 @@ export default function Home({ country }) {
         <Fav favs={fav} setfav={setfav} />
       </div>
       <div className={styles.cards}>
-        {!typing.length && <h1>Not Found</h1>}
+        {!typing.length && <h1 className={styles.err}>Not Found</h1>}
         {mostrarPaises.map((e) => (
           <Country
             setfav={setfav}
